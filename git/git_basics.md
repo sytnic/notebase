@@ -1,8 +1,38 @@
+## Git, начало, кратко
+
+> Отключение папок в .gitignore, например:
+
+    _example.md
+    /.vagrant
+    /storage
+    /bootstrap/cache
+
+> git init
+
+> git add .
+
+> git commit -m "..."
+
+> git tag -a 0.1
+
+После создания удаленного репозитория:
+
+> git remote add origin https://github.com/...
+
+> git push origin master
+
+> git push origin 0.1
+
+> git branch develop
+
+> git checkout develop
+---
+
 В консоли GitBash:
--------------------
+-----
 
 ГЛОБАЛЬНАЯ ПРОВЕРКА
--------------------
+----
 список всех команд  
     
     git --help			    	    	            
@@ -165,9 +195,10 @@ https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%9E%D
 
 Эти команды могут в некоторых случаях безвозвратно удалить данные из рабочего каталога.
 
-![table](img/git/table_git_reset.png)
+![table](../img/git/table_git_reset.png)
 
-[//]: <img src="img/git/table_git_reset.png" alt="drawing" width="400"/>
+[//]: Закомментировано:
+[//]: <img src="../img/git/table_git_reset.png" alt="drawing" width="400"/>
 
 Аменд перезаписывает последний коммит. Для незначительных изменений в последнем коммите. Нельзя использовать --amend, если коммит уже запушен.
 
@@ -193,11 +224,11 @@ https://habr.com/ru/post/201922/
 
 1. Временно переключиться на другой коммит:
 
-git checkout  fed7ce7
+    git checkout  fed7ce7
 
 Чтобы переключиться обратно:
 
-git checkout develop
+    git checkout develop
 
 Если делались какие-то (ненужные) изменения, то переключиться можно так:
 
@@ -207,13 +238,15 @@ git checkout develop
 
 Посмотреть все коммиты, независимо от переключения:
 
-git log --all
+    git log --all
  
 Краткий список:
+```
 git log --all --oneline
 git log --oneline
 git log -2 --oneline
 git log --oneline -2
+```
 
 ----
 
@@ -224,27 +257,6 @@ git log --oneline -2
  git switch -c <new-branch-name>
 
 Переключиться на указанную ветку. Рабочее дерево и индекс обновляются в соответствии с веткой. Все новые коммиты будут добавляться в верхушку этой ветки. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 -----------------------------------------------------------------------------
@@ -330,17 +342,19 @@ C токенами, можно так:
 - запушить (git push)
 ---------------
 
-> git pull			
+### Отправить удаленные изменения в локальный репозиторий
+
+    git pull			
 
 -    команда, обратная команде git push. она отправляет удаленные изменения в локальный репозиторий
 
-> git pull origin branch
+    git pull origin branch
 
-> git clone https://github.com/dm-sytnik/git_test.git
+    git clone https://github.com/dm-sytnik/git_test.git
 
 -    команда клонирует онлайн-проект в какую-либо личную рабочую папку на компьютере
 
-> git checkout --track -b local_branch_name origin/remote_branch_name
+    git checkout --track -b local_branch_name origin/remote_branch_name
 
 -    начинает локально отслеживание онлайн-ветки, 
      по умолчанию после clone открыто показывается только master

@@ -109,7 +109,7 @@ Vagrant и VirtualBox жестко привязывают права к обще
 Значения заданы с помощью $PROJECT_SLUG в bootstrap.sh
 <hr>
 
-## Git
+## Git, начало, кратко
 
 > Отключение папок в .gitignore
 
