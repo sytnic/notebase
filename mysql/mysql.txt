@@ -1,0 +1,10 @@
+показать всех пользователей
+SELECT User, Host FROM mysql.user;
+
+Задать права пользователя
+GRANT ALL PRIVILEGES ON photo_gallery.* TO 'gallery'@'localhost' IDENTIFIED BY 'php123';
+
+для MySQL 8.0
+mysql> CREATE USER 'root'@'%' IDENTIFIED BY 'root';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
