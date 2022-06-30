@@ -1,18 +1,27 @@
-## Некоторые команды linux 
+# Некоторые команды linux 
 ---
-### Навигация по файлам
+## Навигация по файлам
 
 cd  
 cd ~  
 ls  
-
+ls -la  
 pwd  
 
+Запущенные процессы:
+
+    ps aux
+
 ---
-### Apache
+## Apache
 
 httpd -v  
-ps aux | httpd
+
+Найти процесс httpd :
+
+    ps aux | httpd
+        or
+    ps aux | grep httpd
 
 sudo apachectl start  
 sudo apachectl stop  
@@ -22,7 +31,7 @@ cd /etc/apache2
 где apache2.conf - главный файл конфигурации  
 
 ---
-### Файлы
+## Файлы
 
 cat file.txt  
 вывести содержимое файла  
@@ -30,21 +39,25 @@ cat file.txt
 sudo nano file.txt  
 создать файл
 
-### Права на файлы
+## Права на файлы
 
-ls -la  
+Список файлов с разрешениями
 
-sudo chmod 644 file.txt  
+    ls -la  
+
 Установить разрешения 644 для файла
 
+    sudo chmod 644 file.txt  
+
+
 ---
-### PHP
+## PHP
 
 php -v  
 
 ---
 
-### PATH
+## PATH
 
 which php  
 echo $PATH
@@ -64,7 +77,7 @@ source .bash_profile
 
 ---
 
-### MySQL
+## MySQL
 
 > Установка пароля В Linux:
 

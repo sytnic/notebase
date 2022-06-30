@@ -3,6 +3,7 @@
     mysql --version
     mysql -u root -p
     mysql -u root --password=mypassword
+    mysql -u root --password="mypassword"
     exit;
 
 Вход и одновременно USE db_name
@@ -49,6 +50,13 @@
         content TEXT,
         PRIMARY KEY (id),
         INDEX (subject_id)
+    );
+
+    CREATE TABLE admins (
+        id INT(11) NOT NULL AUTO_INCREMENT,
+        username VARCHAR(50) NOT NULL,
+        hashed_password VARCHAR(60) NOT NULL,
+        PRIMARY KEY (id)
     );
 
     SHOW COLUMNS FROM table_name;

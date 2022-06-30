@@ -1,4 +1,6 @@
-## Установка Laravel
+# Установка Laravel
+
+## Установка Linux in VirtualBox
 
 > Создать новую папку
 
@@ -6,36 +8,95 @@
 - Vagrantfile и 
 - bootstrap.sh 
 
-> Подправить в Vagrantfile название будущего сайта и порт
+> Указать в Vagrantfile 
+- название будущего сайта (project_slug = "site"), 
+- корень сайта (document_root = "public") и 
+- порт (config.vm.network:..., host: 4511)
 
-На основе bootstrap.sh  
+На базе bootstrap.sh  
 автоматически будет настроено для Apache в /etc/apache2/sites-enabled/default.conf 
-- имя сайта (оно может иметь дополнительный префикс),
+- имя сайта (оно может иметь дополнительный суффикс (.local)),
 - корневая папка сайта.
 
-> В Windows имя сайта также нужно прописать в hosts .
+> В Windows имя сайта также нужно прописать в hosts (с суффиксом) .
 
-> Запуск: vagrant up
+> Запуск в терминале для этой папки:  
+    
+    vagrant up  
+
 
 Если потребуется старая версия composer:  
 https://stackoverflow.com/questions/64597051/how-to-downgrade-or-install-a-specific-version-of-composer
 
 > Проверка сайта в браузере 
 
-Подгружается из корневой папки. 
+Проверять подготовленными файлами.  
+Подгружается из корневой папки.  
 Но если использовалась переменная document_root="public", особенно в секции VHOST= для Апача, то подгружаться будет из папки public/.
 
 > Проверка установок в терминале
 
-Войти: vagrant ssh  
+Войти: 
+    
+    vagrant ssh  
+
+Проверить:
+
     composer -V  
     php -v
 
-> Установка Laravel
+Проверить MySQL:
+
+    mysql --version
+
+    mysql -u project_slug -p
+      or
+    mysql -u project_slug --password="project_slug"
+
+    SHOW DATABASES;
+    USE project_slug;
+    SHOW TABLES;
+
+    exit
+
+---
+## Создание нового соединения в Workbench
+
+Новое соединение: MySQL Connections (+)
+
+Заполнить:
+- connection name: любое
+- connection method: Standart TCP/IP over SSH
+- SSH hostname: 127.0.0.1:2222 (Вагрант подключается через :2222)
+- SSH username: vagrant (это особенность Вагранта, при подключении командой - vagrant ssh)
+- SSH keyfile: отсутствует
+- MySQL hostname: 127.0.0.1
+- MySQL server port: 3306
+- username: posty (создавался в Vagrantfile (и bootstrap.sh в секции про MySQL) как $PROJECT_SLUG)
+
+Вход через SSH в MySQL: 
+- vagrant vagrant (особенности Вагранта по SSH)
+- posty posty (соответствует названию сайта; особенности настройки $PROJECT_SLUG в bootstrap.sh в строке # Create a database user)
+
+> Создание базы данных
+
+Она уже создана из bootstrap.sh. Использовалась строка типа
+    
+    CREATE SCHEMA `poligon` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    
+Кодировка utf8mb4 описана здесь:
+
+    Index Lengths & MySQL / MariaDB
+        https://laravel.com/docs/5.7/migrations#indexes :
+    Laravel uses the utf8mb4 character set by default
+
+---
+
+## Установка Laravel
 
     vagrant ssh
 
- Перейтив нужную папку. /var/www/...
+ Перейти в нужную папку. /var/www/...
  или
  /vagrant/
 
@@ -84,6 +145,16 @@ Debugbar включается/отключается в файле .env
         или
     APP_DEBUG=false
 
+> Настройка .env файла  
+Значения заданы на основе $PROJECT_SLUG в bootstrap.sh
+
+    DB_DATABASE=posty
+    DB_USERNAME=posty
+    DB_PASSWORD=posty
+
+
+
+
 > Подстройка под MySQL
  
  Для MySQL/MariaDB нужно будет добавить следующие строки в  
@@ -100,44 +171,6 @@ Debugbar включается/отключается в файле .env
     {
         Schema::defaultStringLength(191);
     }
----
-## Создание нового соединения в Workbench
-
-Новое соединение: MySQL Connections (+)
-
-Заполнить:
-- connection name: любое
-- connection method: Standart TCP/IP over SSH
-- SSH hostname: 127.0.0.1:2222 (Вагрант подключается через :2222)
-- SSH username: vagrant (это особенность Вагранта, при подключении командой - vagrant ssh)
-- SSH keyfile: отсутствует
-- MySQL hostname: 127.0.0.1
-- MySQL server port: 3306
-- username: posty (создавался в Vagrantfile & bootstrap.sh в секции про MySQL как $PROJECT_SLUG)
-
-Вход через SSH в MySQL: 
-- vagrant vagrant (особенности Вагранта по SSH)
-- posty posty (соответствует названию сайта; особенности настройки $PROJECT_SLUG в bootstrap.sh в строке # Create a database user)
-
-> Создание базы данных
-
-Она уже создана из bootstrap.sh. Использовалась строка типа
-    
-    CREATE SCHEMA `poligon` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-    
-Кодировка utf8mb4 описана здесь:
-
-    Index Lengths & MySQL / MariaDB
-        https://laravel.com/docs/5.7/migrations#indexes :
-    Laravel uses the utf8mb4 character set by default
-
-> Настройка .env файла
-
-    DB_DATABASE=posty
-    DB_USERNAME=posty
-    DB_PASSWORD=posty
-
-Значения заданы на основе $PROJECT_SLUG в bootstrap.sh
 
 ---
 

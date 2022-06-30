@@ -3,20 +3,23 @@ w = 2
 x = 1  
   = 0  
 
-ps aux | grep httpd
+Найти процесс httpd Апача :  
 
-   maybe
-ps aux | grep -v grep | grep "apache"
+    ps aux | grep httpd
+    ps aux | grep -v grep | grep "apache"
 
+поменять владельца:
 
-sudo chown root file.txt
-	поменять владельца
+    sudo chown root file.txt
+	
+поменять владельца всем файлам в папке:
 
-sudo chown dmitry *
-	поменять владельца всем файлам в папке 
+    sudo chown dmitry *
+	
+поменять права - 600, 644, 666 ...:
 
-sudo chmod 777 testfile.txt
-	поменять права - 600, 644, 666 ...
+    sudo chmod 777 testfile.txt
+	
 
 ---------------------------------------
     Создание папки
