@@ -16,42 +16,56 @@ x = 1
 
     sudo chown dmitry *
 	
-поменять права - 600, 644, 666 ...:
+поменять права - 600, 644, 666 ...  
+файлу:
 
     sudo chmod 777 testfile.txt
+
+текущей папке:
+
+    sudo chmod 777 .
 	
 
 ---------------------------------------
-    Создание папки
-mkdir foo
+Создание папки
+    
+    mkdir foo
 
-    Переименование
-mv foo foo2
-mv file file_new
+Переименование
 
-    Посмотреть содержимое файла. Создать новый файл.
-nano file
+    mv foo foo2
+    mv file file_new
+
+Посмотреть содержимое файла. Создать новый файл.
+
+    nano file
 
 ---------------------------------------
 
-	посмотреть скрытые файлы
-ls -an
-ls -la
+посмотреть скрытые файлы
 
-	удалить скрытые файлы
-sudo rm .gitignore
+    ls -an
+    ls -la
 
-	удалить папку
-sudo rm -rf  project2
+удалить скрытый файл
+
+    sudo rm .gitignore
+
+удалить папку
+
+    sudo rm -rf  project2
         или
-sudo rm -r  project2
-        удалить всё содержимое в текущей директории
-     rm -rf *
+    sudo rm -r  project2
+
+удалить всё содержимое в текущей директории
+
+    rm -rf *
 
 ---------------------------------------
 
- создание простой (символьной, не жёсткой) ссылки на файл в другой папке
-ln -s /home/dmitry/Документы/test/testfile.txt
-ln -s /etc/apache2/mods-available/rewrite.load 
+создание простой (символьной, не жёсткой) ссылки на файл в другой папке
+
+    ln -s /home/dmitry/Документы/test/testfile.txt
+    ln -s /etc/apache2/mods-available/rewrite.load 
 
 ---------------------------------------

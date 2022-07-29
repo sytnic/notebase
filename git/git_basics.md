@@ -27,6 +27,8 @@
 > git branch develop
 
 > git checkout develop
+
+> git log --oneline --all
 ---
 
 В консоли GitBash:
@@ -150,6 +152,9 @@ git commit -m'First commit'
 
     git log -2  
 
+список всех логов:
+
+    git log --oneline --all
 
 -------
 
@@ -248,7 +253,7 @@ https://habr.com/ru/post/201922/
 
     git log --all
  
-Краткий список:
+Краткий список коммитов:
 ```
 git log --all --oneline
 git log --oneline
