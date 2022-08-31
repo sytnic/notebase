@@ -4,11 +4,14 @@
     mysql -u root -p
     mysql -u root --password=mypassword
     mysql -u root --password="mypassword"
+
     exit;
+    quit;
 
 Вход и одновременно USE db_name
 
     mysql -u user -p db_name
+    mysql -u user --password="mypassword" db_name
 
 ## Пользователи
 
