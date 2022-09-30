@@ -435,6 +435,232 @@ terminal 1:
 
 ---
 
-# 20
+# 20 Dockerfiles
+
+    docker build -t name-of-result .
+
+Точка - это указание на текущую директорию, где будут докерфайлы.
+
+---
+# 21.Building Dockerfiles
+
+Создание папки и Dockerfile. Можно выполнять в Git Bash.
+
+    mkdir example
+    cd example
+    ls
+    nano Dockerfile
+
+Ввод данных:
+
+    FROM busybox
+    RUN echo "building simple docker image."
+    CMD echo "Hello container"
+
+Выход из nano с сохранением файла
+
+    Ctrl + X
+    "Y"
+    Enter
+
+Построение Docker-файла с именем hello в текущей папке
+
+    docker build -t hello .
+
+Запуск контейнера из образа hello с самоудалением
+
+    docker run --rm hello
+    
+---
+Более сложный пример:
+
+    FROM debian:sid
+    RUN apt-get -y update 
+    RUN apt-get install nano
+    CMD ["/bin/nano", "/tmp/notes"]
+
+Ввести данные, перезаписав Dockerfile.
+Построить новый образ.
+
+    docker build -t example/nanoer .
+
+Запуск, проверка. В CMD работает. В GitBash нет.
+
+    docker run --rm -ti example/nanoer
+
+Запустится в nano файл tmp/notes.  
+Любой текст в нём.  
+Изменения в файле Dockerfile:
+
+    FROM example/nanoer
+    ADD notes.txt /notes.txt
+    CMD ["nano", "/notes.txt"]
+
+В этой же папке с Dockerfile создаём новый файл:  
+
+    nano notes.txt
+
+С любым текстом.
+Далее
+
+    docker build -t example/notes .
+    docker run -ti --rm example/notes
+
+---
+# 22.Dockerfile syntax
+
+Example:
+
+    FROM java:8  
+
+    MAINTAINER Firstname Lastname < email@example.com>
+
+    RUN unzip install.zip /opt/install/
+        or
+    RUN echo hello docker
+
+    ADD run.sh  /run.sh
+        or
+    ADD project.tar.gz  /install/
+        or
+    ADD https://project.example.com/download/1.0/project.rpm  /project/
+ 
+    ENV DB_HOST=db.production.example.com
+    ENV DB_PORT=4532
+
+Для запуска команд: 
+
+    ENTRYPOINT
+    ENTRYPOINT RUN
+    CMD
+
+Указание порта в контейнере:
+
+    EXPOSE 8080
+
+Volume
+
+    VOLUME ["/host/path/" "/container/path/"]
+    VOLUME ["/shared-data"]
+
+WORKDIR, подобно CD, задаёт директорию, в которой должен стартовать контейнер
+
+    WORKDIR /install/
+
+USER задает, от имени какого пользователя будет выполняться контейнер
+
+    USER arthur
+        or
+    USER 1000
+
+---
+# 23.Multi-project Docker files
+
+Dockerfile:
+
+    FROM ubuntu:16.04
+    RUN apt-get update
+    RUN apt-get -y install curl
+    RUN curl https://google.com | wc -c > google-size
+    ENTRYPOINT echo google is this big; cat google-size
+
+Будет измерено количество символов на домашней странице google.  
+wc - word count, -c - count of characters.
+
+Построение имэджа tooo-big. Запуск команды в CMD в папке с Dockerfile:
+
+    docker build -t tooo-big .
+
+Запуск образа. Будет запущен контейнер и остановлен. Будет выведено число подсчитанных символов в терминал.
+
+    docker run tooo-big
+
+Попытка уменьшить образ, изменённый Dockerfile:
+
+    FROM ubuntu:16.04 as builder
+    RUN apt-get update
+    RUN apt-get -y install curl
+    RUN curl https://google.com | wc -c > google-size
+
+    FROM alpine 
+    COPY --from=builder /google-size  /google-size
+    ENTRYPOINT echo google is this big; cat google-size
+
+Создание нового образа
+
+    docker build -t google-size .
+
+Запуск образа.
+
+    docker run google-size
+
+Результат вывода в CMD тот же. Но размер образа меньше:
+
+    docker images
+
+---
+# 24.Avoid golden images
+---
+# 25
+---
+# 26.Networking and namespaces
+
+    docker run -ti --rm --net=host ubuntu:16.04 bash
+
+В контейнере:
+
+    apt-get update && apt-get install bridge-utils
+
+    brctl show
+
+В новом терминале:
+
+    docker network create my-new-network
+
+---
+
+    docker run -ti --rm --net=host --priveleged=true ubuntu bash
+
+В контейнере:
+
+    apt-get update
+    apt-get install iptables
+    iptables -n -L -t nat
+
+В другом терминале:
+
+    docker run -ti --rm -p 8080:8080 ubuntu bash
+
+---
+# 27 Processes
+
+    docker run -ti --rm --name hello ubuntu bash
+
+В другом терминале:
+
+    docker inspect --format '{{State.Pid}}' hello
+
+Копируется полученный id, например 7658
+
+    docker run -ti --rm --priveleged=true --pid=host ubuntu bash
+    kill 7658
+    // уничтожит первый запущенный контейнер 
+ 
+---
+# 28
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

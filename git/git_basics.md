@@ -1,6 +1,15 @@
 ## Git, начало, кратко
 
-> Отключение папок в .gitignore, например:
+### Создание локального репозитория
+
+    git init
+    git add .
+    git commit -m "..."
+    
+    // не обязательно
+    git tag -a 0.1
+
+### Игнорирование ненужных файлов, .gitignore, пример:
 
     _example.md
     /.vagrant
@@ -8,29 +17,48 @@
     /bootstrap/cache
     # this is a comment
 
-> git init
+### Добавление лицензии офлайн
 
-> git add .
+Чтобы не добавлять лицензию онлайн, можно заранее добавить в локальный репозиторий готовый файл с лицензией (LICENSE, LICENSE.md или LICENSE.txt).
 
-> git commit -m "..."
+### После создания удаленного (онлайн) репозитория:
 
-> git tag -a 0.1
+    git remote add origin https://github.com/...
+    git push origin master
 
-После создания удаленного репозитория:
+    // Не обязательно:
+    // выкладка созданного тега
+    git push origin 0.1   
 
-> git remote add origin https://github.com/...
+### Добавление лицензии онлайн
 
-> git push origin master
+Если не был изначально добавлен файл лицензии в локальный репозиторий.
 
-> git push origin 0.1
+- Создаётся пустой онлайн репозиторий без выбора лицензии
+- Пушится локальный репозиторий в онлайн
+- Создаётся онлайн файл лицензии. 
+Либо путём "Add file->Create new file", либо через "Insight->Community Standarts".  
+https://askdev.ru/q/kak-dobavit-licenziyu-v-suschestvuyuschiy-proekt-na-github-12837/  
+Его названием может быть LICENSE, LICENSE.md, LICENSE.txt . CapsLock не обязателен, но используется, вероятно, для выделения среди других файлов проекта.  
+Будет создан новый коммит. Его следует поместить напрямую (directly) в ветку master (единственная на даный момент).
+- После этого выполнить - git pull origin master - для получения онлайн изменений в локальный репозиторий.
 
-> git branch develop
+### Добавление запасной ветки develop
 
-> git checkout develop
+    git branch develop
+    git checkout develop
 
-> git log --oneline --all
+### Дополнительные команды
+
+    // список всех коммитов
+    git log --oneline --all    
+
+### Вызов справки по той или иной команде (ex., branch)
+
+    git --help branch
+    // откроется в браузере
+
 ---
-
 В консоли GitBash:
 -----
 
@@ -409,9 +437,11 @@ C токенами, можно так:
 
     git pull origin branch
 
+
     git clone https://github.com/dm-sytnik/git_test.git
 
 -    команда клонирует онлайн-проект в какую-либо личную рабочую папку на компьютере
+
 
     git checkout --track -b local_branch_name origin/remote_branch_name
 
