@@ -136,14 +136,14 @@ https://askdev.ru/q/kak-dobavit-licenziyu-v-suschestvuyuschiy-proekt-na-github-1
 
 ------------
 
-git add .			
--    добавит все файлы (т.к. указана точка, но можно указывать и отдельные файлы через пробел) в подготавливаемую зону отслеживания (staging area)
+    git add .			
+добавит все файлы (т.к. указана точка, но можно указывать и отдельные файлы через пробел) в подготавливаемую зону отслеживания (staging area)
 
-git add index.html light.png	
--    добавит файлы, перечисленные через пробел, в зону отслеживания (staging area)
+    git add index.html light.png	
+добавит файлы, перечисленные через пробел, в зону отслеживания (staging area)
 
-git commit -m'First commit'	
--    коммит (сохранение) с комментарием (судя по справке гита: (-м) - это message)
+    git commit -m'First commit'	
+коммит (сохранение) с комментарием (судя по справке гита: (-м) - это message)
 
 ----------------
 > Примечание: 
@@ -186,7 +186,7 @@ git commit -m'First commit'
 
 -------
 
-git log  
+    git log  
 фактически выводит лог текущей ветки, на к-рой находишься; другие ветки (и их коммиты), ответвлённые от старых  коммитов - не показываются.
 
 -------
@@ -202,7 +202,7 @@ ESC :q
 
 иногда срабатывает ESC q q
 
-git reset HEAD index.html       
+    git reset HEAD index.html       
 удаляет указываемый файл из staging area в предыдущее состояние
 
 ------
@@ -263,7 +263,7 @@ https://habr.com/ru/post/201922/
 
 Как вернуться (откатиться) к более раннему коммиту?
 
-1. Временно переключиться на другой коммит:
+> Временно переключиться на другой коммит:
 
     git checkout  fed7ce7
 
@@ -295,31 +295,37 @@ git log --oneline -2
 
 Согласно описанию https://git-scm.com/docs/git-switch  :
 
- git switch -c new-branch-name
+    git switch -c new-branch-name
 
 Переключиться на указанную ветку. Рабочее дерево и индекс обновляются в соответствии с веткой. Все новые коммиты будут добавляться в верхушку этой ветки. 
 
 ---
 ## Внесение изменений с созданием ветки
-- Переключиться в старый коммит:  
+Переключиться в старый коммит:
+
     git checkout  fed7ce7
 
-- Создать и сохранить изменения в файлах
+Создать и сохранить изменения в файлах
 
-- Создать новую ветку (vid_6):  
+Создать новую ветку (vid_6):
+
     git branch vid_6
 
-- Переключиться в новую ветку:  
+Переключиться в новую ветку: 
+
     git checkout vid_6
 
-- Закоммитить изменения:  
+Закоммитить изменения:
+
     git add  
     git commit -m "..."
 
-- Вернуться назад:  
+Вернуться назад:
+
     git checkout develop
 
-- Выложить новую ветку:  
+Выложить новую ветку:  
+
     git push origin develop vid_6
 
 ## Внесение изменение в старые коммиты
@@ -343,6 +349,19 @@ git log --oneline -2
     git commit --amend
 - затем, согласно подсказке в Git Bash  
     git rebase --continue
+
+## Посмотреть (открыть) все ветки клонированного репозитория
+
+https://ru.stackoverflow.com/questions/525610/клонирование-веток-удаленного-репозитория  
+https://progi.pro/ya-ne-vizhu-vetki-pri-klonirovanii-repozitoriya-8098228  
+https://githowto.com/ru/remote_branches  
+https://githowto.com/ru/adding_a_tracking_branch  
+
+Переключиться на нужную ветку:
+
+    git branch -r
+    git checkout no-master
+
 ---
 
 
@@ -371,7 +390,8 @@ git remote add origin https://sytnic@bitbucket.org/sytnic/widget-corp.git
 ## Работа с origin
 
     git remote show origin
-- посмотреть, что понимается под origin, какая удалённая папка и какие там есть ветки.
+
+посмотреть, что понимается под origin, какая удалённая папка и какие там есть ветки.
 
     git remote remove origin
 
@@ -433,19 +453,19 @@ C токенами, можно так:
 
     git pull			
 
--    команда, обратная команде git push. она отправляет удаленные изменения в локальный репозиторий
+команда, обратная команде git push. она отправляет удаленные изменения в локальный репозиторий
 
     git pull origin branch
 
 
     git clone https://github.com/dm-sytnik/git_test.git
 
--    команда клонирует онлайн-проект в какую-либо личную рабочую папку на компьютере
+команда клонирует онлайн-проект в какую-либо личную рабочую папку на компьютере
 
 
     git checkout --track -b local_branch_name origin/remote_branch_name
 
--    начинает локально отслеживание онлайн-ветки, 
+начинает локально отслеживание онлайн-ветки, 
      по умолчанию после clone открыто показывается только master
 
 ---------------------------------
@@ -503,11 +523,13 @@ Merge удаляет файлы текущей ветки и добавляет 
 ---------------------
 
 удаление ветки branch2, если из ветки master набрать  
-git branch -d branch2		
+
+    git branch -d branch2		
 
 
 если ветка еще не существует на ремоут сервере, то запушить ее можно командой  
-git push --set-upstream origin my-branch
+
+    git push --set-upstream origin my-branch
 
 -------------------------------
 -----------------------------
@@ -515,39 +537,39 @@ git push --set-upstream origin my-branch
 > справка по тегам
 
 ------------
-git tag word  
+    git tag word  
 сразу создаст тег под этим словом/числом word без аннотации
 
-git tag -a word  
+    git tag -a word  
 создаст тег под этим словом/числом word с аннотацией
 
 или такой вариант с аннотацией, тогда редактор не открывается поверх:  
-git tag -a 4.0 -m "Version 4.0"			
+    git tag -a 4.0 -m "Version 4.0"			
 
-git tag --list		    список тегов
-git tag			        список тегов
-git show-ref --tags		список тегов с коммитами
+    git tag --list		    список тегов
+    git tag			        список тегов
+    git show-ref --tags		список тегов с коммитами
 
-git tag -v tagname  
+    git tag -v tagname  
 посмотреть про конкретный тег
 
-git show tagname  
+    git show tagname  
 подробно содержимое всех файлов согласно тегу
 
-git help tag
+    git help tag
 
-git tag -d tagname  
+    git tag -d tagname  
 удаляет тег
 
-git checkout tags/1.0  
+    git checkout tags/1.0  
 переключаемся на тег 1.0, да, именно со слэшем.
 
 > как запушить тег в онлайн:
 
-git push origin tagname  
+    git push origin tagname  
 пушит этот тег в онлайн
 
-git push origin --tags  
+    git push origin --tags  
 пушит все сохраненные теги в онлайн
 
 ------------
@@ -559,31 +581,31 @@ git push origin --tags
 стрелка вверх, стрелка вниз  
 предыдущая, следующая уже вводимая команда
 
-pwd  
+    pwd  
 текущая папка (print working directory)
 
-ls  
+    ls  
 список находящегося в текущей папке
 
-ls -la  
+    ls -la  
 подробный список находящегося в папке (с правами доступа)
 
-ls -a  
+    ls -a  
 список всего находящегося в папке, включая скрытое (-a == all)
 
-ls chapter  
+    ls chapter  
 вывести содержимое подпапки
 
-cd  
+    cd  
 change directory («изменить директорию»)
 
-cd ..  
+    cd ..  
 переход на папку вверх
 
-mkdir  
+    mkdir  
 make directory («создать директорию»)
 
-shift+insert  
+    shift+insert  
 вставка из буфера обмена
 
 -----------------------------
