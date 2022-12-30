@@ -1,0 +1,10 @@
+Windows/System32
+
+cd drivers
+cd etc
+dir
+
+notepad hosts
+127.0.0.1 test-lamp.local
+127.0.0.1 test-lemp.local
+

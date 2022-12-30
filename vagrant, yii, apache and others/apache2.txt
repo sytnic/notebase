@@ -1,0 +1,55 @@
+Для перенаправления требуется
+
+- включить модуль rewrite
+- настроить файл .conf сайта в  /etc/apache2/sites-enabled/
+- настроить .htaccess в корне сайта
+
+примерно так :
+https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-installation.md
+1
+sudo a2enmod rewrite
+
+	Перезагрузка Apache
+sudo service apache2 restart
+     service apache2 reload
+
+--------------------
+в etc/apache2/mods-enabled/
+должна быть ссылка на rerite.load
+
+созданиние ссылки:
+ln -s /etc/apache2/mods-available/rewrite.load 
+
+--------------------
+2 
+<Directory "/path/to/yii-application/backend/web/">
+            # use mod_rewrite for pretty URL support
+            RewriteEngine on
+            # If a directory or a file exists, use the request directly
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            # Otherwise forward the request to index.php
+            RewriteRule . index.php
+
+            # use index.php as index file
+            DirectoryIndex index.php
+
+            # ...other settings...
+            # Apache 2.4
+            Require all granted
+            
+            ## Apache 2.2
+            # Order allow,deny
+            # Allow from all
+        </Directory>
+3
+            # use mod_rewrite for pretty URL support
+            RewriteEngine on
+            # If a directory or a file exists, use the request directly
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            # Otherwise forward the request to index.php
+            RewriteRule . index.php
+----------------------
+----------------------
+

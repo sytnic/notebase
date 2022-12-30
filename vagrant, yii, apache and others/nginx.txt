@@ -1,0 +1,4 @@
+Перезапустить nginx
+
+sudo systemctl -q restart nginx
+sudo systemctl -q enable nginx

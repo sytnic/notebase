@@ -1,0 +1,24 @@
+> Создание нового соединения в Workbench
+
+Заполнить:
+- connection name: любое
+- connection method: Standart TCP/IP over SSH
+- SSH hostname: 127.0.0.1:2222 (Вагрант подключается через :2222)
+- SSH username: vagrant (это особенность Вагранта, при подключении командой - vagrant ssh)
+- SSH keyfile: отсутствует
+- MySQL hostname: 127.0.0.1
+- MySQL server port: 3306
+- username: poligon58 (создавался в bootstrap.sh как $PROJECT_SLUG)
+
+Вход через SSH в MySQL: 
+- vagrant vagrant (особенности Вагранта по SSH)
+- poligon58 poligon58 (особенности настройки $PROJECT_SLUG в bootstrap.sh в строке # Create a database user)
+
+- Работа двух вагрантов сразу может вызвать ошибки в Workbench, нужно отключить все и включить нужный one.
+--------------------
+
+> Создание базы данных
+
+Она уже создана из bootstrap.sh. Использовалась строка типа
+    
+    CREATE SCHEMA `poligon` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

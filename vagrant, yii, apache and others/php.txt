@@ -1,0 +1,26 @@
+Если не работает pecl
+
+sudo apt-get install php-pear
+или
+sudo apt install php-pear
+
+-----
+
+Установка расширения oci8
+
+pecl install oci8 		не работает сходу
+
+для php 7
+pecl install oci8-2.2.0		не работает сходу
+
+-----
+
+https://gist.github.com/hewerthomn/81eea2935051eb2500941a9309bca703
+
+1)
+
+wget https://download.oracle.com/otn_software/linux/instantclient/213000/instantclient-sdk-linux.x64-21.3.0.0.0.zip
+
+wget https://download.oracle.com/otn_software/linux/instantclient/213000/instantclient-basic-linux.x64-21.3.0.0.0.zip
+
+

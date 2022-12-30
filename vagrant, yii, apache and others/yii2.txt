@@ -1,0 +1,10 @@
+Настройки базы данных
+/path/to/yii-application/common/config/main-local.php 
+описано тут https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-installation.md
+
+yiidebug подключается/удаляется строчкой
+allowedIPs' => ['127.0.0.1', '::1']
+или
+allowedIPs' => ['*', '::1']
+в файле www/project/frontend/config/main.local.php
+описание  https://github.com/yiisoft/yii2-debug

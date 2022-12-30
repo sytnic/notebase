@@ -1,0 +1,296 @@
+sudo su
+
+apt-get update
+
+-----------------------------------------
+
+apt-get install apache2
+
+apache2 -v
+
+service apache2 start
+.. ..           stop
+
+apt-get install mysql-server
+
+mysql -V
+mysql -u root 
+SHOW GLOBAL VARIABLES LIKE 'version';
+
+apt-get install php php-mcrypt php-mysql libapache2-mod-php
+apt-get install php            php-mysql libapache2-mod-php
+php -v
+
+-------------------------------------------
+
+sudo su
+apt-get update
+
+apt-get install nginx
+nginx -v
+
+apt-get install mysql-server
+mysql -V
+apt-get install php-mysql php-fpm
+
+service php7.4-fpm status
+
+-------------------------------------------
+-------------------------------------------
+LAMP
+
+sudo su
+pwd
+cd /var/www
+ls
+mkdir test-lamp.local
+cd test-lamp.local
+nano index.php
+<?php echo 'Test LAMP site';  ?>
+CTRL+X  Y Enter	 	- сохранение
+CTRL+X 			- выход
+
+1)
+
+cd /etc/apache2/sites-available/
+nano 000-default.conf
+cp 000-default.conf test-lamp.local.conf
+nano test-lamp.local.conf
+CTRL+K - удаление строки
+
+В test-lamp.local.conf:
+ServerName test-lamp.local
+DocumentRoot /var/www/test-lamp.local
+
+2)
+
+cd ..
+cd sites-enabled/
+
+a2ensite test-lamp.local
+
+systemctl reload apache2
+systemctl restart apache2
+
+	список модулей
+sudo apachectl -M
+	включение моудля rewright
+sudo a2enmod rewrite
+	https://losst.ru/moduli-apache
+
+
+----------------
+    создание простой (символьной, не жёсткой) ссылки на файл в другой папке
+ln -s /home/dmitry/Документы/test/testfile.txt
+ln -s /etc/apache2/mods-available/rewrite.load 
+
+    проверить модуль
+sudo a2enmod rewrite
+
+------------------
+------------------
+LDAP
+
+   Редирект 
+    /etc/apache2/sites-available site.conf
+Redirect /index /index.php
+
+was
+
+<VirtualHost *:80>
+    ServerName phones.local
+    DocumentRoot /var/www/phones/public
+    <Directory /var/www/phones/public>
+        AllowOverride All
+    </Directory>
+    Redirect /index /index.php
+</VirtualHost>
+
+became
+
+    DocumentRoot /var/www/phones/public/web
+    <Directory /var/www/phones/public/web>
+
+
+cd /etc/php/7.3/apache2/php.ini
+sudo service apache2 restart
+
+
+------------------
+------------------
+
+3)
+
+nano /etc/hosts
+127.0.0.1    test-lamp.local
+
+---------------
+Windows/System32
+
+cd drivers
+cd etc
+dir
+
+notepad hosts
+127.0.0.1 test-lamp.local
+127.0.0.1 test-lemp.local
+
+------------------------------------------
+------------------------------------------
+Yii2
+
+из папки var/www/project/
+для удаления backend/ frontend/ в папке www/project/ все вложенные папки (-r) без подтверждения (f) всё (*)
+rm -rf *
+
+--------------
+sudo apt-get install vim   
+sudo apt-get install htop
+sudo apt-get install php-mbstring
+sudo apt-get install php-zip
+sudo apt-get install php-imagick
+--------------
+
+sudo apt-get install php-xml             dom
+sudo apt-get install php7.4-curl
+
+
+https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-installation.md
+
+1)
+     установка в папке directory
+composer create-project --prefer-dist yiisoft/yii2-app-advanced directory
+	аналогична git clone ... , composer install ...
+2)
+php init
+
+    в project/common/config/
+nano main-local.php
+
+3)
+Создать базу данных
+https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-installation.md
+
+/path/to/yii-application/common/config/main-local.php 
+
+4)
+в www/project/
+php yii migrate
+------------------
+
+
+
+
+-----------------------------------------
+-----------------------------------------
+
+LDAP
+
+sudo apt-get install php7.3-ldap
+sudo service apache2 restart
+
+
+   // (sudo) yum install zip unzip php-zip
+(sudo) apt install zip unzip php-zip
+sudo apt-get install php7.3-zip
+	Посмотреть установленные модули PHP
+php -m 
+
+   // or
+   // sudo apt-get install zip unzip php7.3-zip
+
+   
+composer update
+
+   //  5b22e3c8ddfe6bece4362f8646251716f081e896 - git
+
+composer install
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------
+------------------------------------------
+
+LEMP
+
+sudo su
+cd /var/www
+mkdir test-lemp.local
+cd test-lemp.local
+nano index.php
+
+nano /etc/hosts
+127.0.0.1    test-lemp.local
+
+cd /etc/nginx/
+cd sites-available/
+
+cp default test-lemp.local
+
+nano test-lemp.local
+оставляем
+listen 80; (без default - default только в одном файле должен быть)
+строку с [] - удаляем - это для ipv6
+
+root /var/www/test-lemp.local
+- Add index.php
+
+server_name test-lemp.local;
+
+location расскомментировать
+ location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+
+                # With php-fpm (or other unix sockets):
+                fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+                # With php-cgi (or other tcp sockets):
+               #        fastcgi_pass 127.0.0.1:9000;
+        }
+
+ln -s /etc/nginx/sites-available/test-lemp.local /etc/nginx/sites-enabled/
+
+
+
+service nginx restart
+ ( sudo systemctl restart nginx )
+
+sudo service php7.2-fpm restart
+
+-----------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

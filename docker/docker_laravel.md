@@ -105,9 +105,14 @@ vhost.conf
 
 Вход в контейнер laravelapp
 
+    cd /d E:\
+    cd develop_train\dockerphp\medlite
+    dir
     docker ps
     docker exec -it container_id bash 
     (не работает в GitBash, работает в cmd)
+
+    apt-get install nano
 
 В терминале в папке с проектом
 

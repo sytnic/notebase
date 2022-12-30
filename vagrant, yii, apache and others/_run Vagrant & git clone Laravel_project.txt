@@ -1,0 +1,43 @@
+Запуск
+- Копируешь Vagrantfile и bootstrap.sh
+- Меняешь в Vagrantfile project_slug и host:4510 в строчке config.vm.network
+- Добавляешь сайт в hosts согласно прописанному в bootstrap.sh (ServerName для Apache)
+- vagrant up
+- проверка в браузере (папка _check_for_public), сайт подгружается из папки public согласно document_root в Vagrantfile
+- git clone htps://...
+- если необходимо, перенос папок, включая скрытую папку .git, и настройка document_root в Vagrantfile
+
+- если перенастраивался Vagrantfile с влиянием на bootstrap.sh, например, document_root, то
+    vagrant reload --provision
+-- если перенастраивался Vagrantfile без влияния на bootstrap.sh, то
+    vagrant reload
+
+- создать ветку git branch develop
+
+- подключить проект с корневой надпапкой (если она есть) в Visual Code (даже если корневая надпапка излишня) 
+- лишнее в .gitignore, использовать корневой .gitignore
+
+- git commit -m "Level zero, develop"
+
+- как ты заметил, нет папки vendor, и сайт пока не заработает, поэтому  
+    composer install 
+    (иногда до этого нужен composer update)
+
+- ​composer require barryvdh/laravel-debugbar:~3.0 --dev
+- создать .env
+
+--------
+
+- php artisan key:generate
+
+- создать соединение в Workbench
+
+
+// создание таблиц
+    php artisan migrate
+
+// заполнение таблиц (если нужно)
+    php artisan db:seed
+
+
+

@@ -1,0 +1,75 @@
+> Vagrant
+
+- Копируешь Vagrantfile и bootstrap.sh
+- Меняешь в Vagrantfile project_slug и host:4510 в строчке config.vm.network
+- Добавляешь сайт в hosts согласно прописанному в bootstrap.sh (ServerName для Apache)
+- vagrant up
+- проверка в браузере (папка _check_for_public), сайт подгружается из папки public согласно document_root в Vagrantfile
+---------------
+
+> Laravel
+
+- composer create-project laravel/laravel myfolder
+    желательно вызывать команду в надпапке и указать низлежащую целевую папку
+    
+- ​composer require barryvdh/laravel-debugbar --dev
+или, для старых версий    
+- ​composer require barryvdh/laravel-debugbar:~3.0 --dev
+    !! в GitBash'e эта команда не работает
+
+- Поставить в .env файле APP_DEBUG=true
+
+- настроить .gitignore
+  /.vagrant
+  /storage
+  /bootstrap/cache
+
+---------------
+> Подстройка под MySQL
+
+ https://laravel.com/docs/8.x/migrations#index-lengths-mysql-mariadb 
+
+ в  app\Providers\AppServiceProvider.php:  
+        
+    ...
+    use Illuminate\Support\Facades\Schema;
+    ...    
+    public function boot()
+    {
+        Schema::defaultStringLength(191);
+    }
+----------------
+- База данных уже создана из bootstrap.sh строкой типа CREATE SCHEMA `project_slug` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+----------------  
+> Создание нового соединения в Workbench
+> Выключить все Вагранты! vagrant halt
+  Включить нужный one.
+
+----------------
+
+> Настройка .env файла. Значения заданы с помощью $PROJECT_SLUG в bootstrap.sh
+
+    DB_DATABASE=project_slug
+    DB_USERNAME=project_slug
+    DB_PASSWORD=project_slug
+------------------
+Git
+
+git add .
+
+git commit -m "..."
+
+> После создания удаленного репозитория:
+
+git remote add origin https://github.com/...
+
+git push origin master
+
+git branch develop
+
+git checkout develop
+
+-----------------
+  
+
