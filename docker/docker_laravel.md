@@ -1,8 +1,8 @@
 # Docker, Laravel, Apache
 
-## Подготовка
+## Подготовка Docker
 
-https://webomnizz.com/containerize-your-laravel-application-with-docker-compose/
+https://webomnizz.com/containerize-your-laravel-application-with-docker-compose/  
 https://www.youtube.com/watch?v=Ra1CetTcSeo
 
 Другой пример: https://github.com/veevidify/laravel-apache-docker
@@ -28,13 +28,14 @@ version: '3.7'
 services:
   db:
     image: mysql:5.7
-    restart: always
+    restart: on-failure
     ports: 
         - "3306:3306"
     environment:
-        MYSQL_DATABASE: 'laratest_db'
-        MYSQL_ALLOW_EMPTY_PASSWORD: 1
-        MYSQL_ROOT_PASSWORD: ""
+        MYSQL_DATABASE: 'vitrina_db'
+        # MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        MYSQL_ROOT_PASSWORD: "123"
+        # Log in: db, root, 123
     volumes:
         - ./dbfiles:/var/lib/mysql
   app:
@@ -96,23 +97,27 @@ vhost.conf
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
-## Запуск
+## Запуск Docker & Laravel
+
+Откорректировать env, если необходимо
 
 Запуск контейнеров
 
     docker-compose build
     docker-compose up -d
 
-Вход в контейнер laravelapp
+Вход в контейнер
 
     cd /d E:\
     cd develop_train\dockerphp\medlite
     dir
     docker ps
-    docker exec -it container_id bash 
+    docker exec -it container_id bash
     (не работает в GitBash, работает в cmd)
 
-    apt-get install nano
+    # apt-get install nano
+
+    chown -R www-data:www-data *
 
 В терминале в папке с проектом
 
@@ -122,6 +127,8 @@ vhost.conf
 Установка ключа для запуска Laravel
 
     php artisan key:generate
+
+## Запуск Laravel в браузере
 
 В браузере
 
@@ -137,14 +144,20 @@ vhost.conf
 
     docker-compose down 
 
-Вход в контейнер laravelapp и миграция
+Вход в контейнер и миграция
 
     docker ps
     docker exec -it container_id bash
 
 ## Запуск миграций
 
+! Остановить и запустить контейнеры, затем:
+
     php artisan migrate
+
+> Проверка в браузере
+
+    127.0.0.1:8080/adminer.php
 
 ## Остановка контейнеров
 

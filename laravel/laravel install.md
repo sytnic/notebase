@@ -105,20 +105,37 @@ https://stackoverflow.com/questions/64597051/how-to-downgrade-or-install-a-speci
 
 По локальному имени сайта и по порту. Подгружаться будет из папки public.
 
+> Если есть ошибка с правами для storage/logs (возможна при Docker'e)
+> https://stackoverflow.com/questions/50552970/laravel-docker-the-stream-or-file-var-www-html-storage-logs-laravel-log-co
+
+
+    chown -R www-data:www-data storage
+    или
+    chown -R www-data:www-data *
+
 > Проверка в терминале
 
     php artisan -V
 
 ---
 
+> Docker:  
+Доработка .env файла в соответсвии с docker-compose.yml
+
+    DB_HOST=db                # container service name (services:  db:)
+    DB_DATABASE=laratest_db   # (environment: MYSQL_DATABASE: 'vitrina_db')
+
+----
+
 ## Git
 
 Отключение папок в .gitignore
 
     /.vagrant
-    /storage
-    /bootstrap/cache
+    /storage          # это папка может требоваться при установке новых проектов
+    /bootstrap/cache  # это папка может требоваться при установке новых проектов
     /node_modules
+    /dbfiles
 
 Новый локальный репозиторий
 
@@ -190,12 +207,63 @@ js-ы у меня не заработали.
 ---
 > Позже, при создании таблиц для БД:
 
-При этом для создания таблиц БД под авторизацию должна быть запущена команда
+Для создания таблиц БД под авторизацию должна быть запущена команда
 
 php artisan migrate
 
 Будут созданы пустые таблицы для авторизации из файлов миграций, находящихся в database/migration/.  
 
+
+---
+> Docker:  
+Laravel 8  
+Bootstrap  
+
+https://github.com/laravel/ui  
+https://stackoverflow.com/questions/66188968/how-to-properly-start-laravel-8-with-bootstrap-authentication  
+https://stackoverflow.com/questions/65718391/laravel-npm-command-mix-not-found  
+
+Cтандартное предложение https://github.com/laravel/ui    
+    install npm && npm run dev   
+ не сработало
+
+Работает:
+
+    composer require laravel/ui
+
+    php artisan ui bootstrap --auth
+
+    # install npm
+    # apt-get install npm
+
+    # npm run dev
+
+    npm install laravel-mix@latest
+    npm clean-install
+
+    npm run dev    # запускается в папке с  package.json
+    npm run dev    # может потребоваться второй запуск: Finished. Please run Mix again.
+
+Если ранее не создавались таблицы: 
+
+    php artisan migrate
+    # сработало после остановки и перезапуска контейнеров
+    # также были предварительно высталвены права на все папки
+    # chown -R www-data:www-data *
+    # неизвестно, повлияло ли это
+
+Вместо создания нового соединения в Workbench  
+использую adminer.php и adminer.css  
+в /public папке
+
+Вход согласно файлу .env
+
+DB_CONNECTION=mysql
+DB_HOST=db        # используется это
+DB_PORT=3306
+DB_DATABASE=vitrina_db
+DB_USERNAME=root  # используется это
+DB_PASSWORD=123   # используется это
 
 ---
 ## Создание нового соединения в Workbench
@@ -280,6 +348,16 @@ database\seeds\DatabaseSeeder@run - в какой последовательно
 ---
 ## Настройка Laravel
 
+> Docker
+> Вход в контейнер
+
+    cd /d E:\
+    cd develop_train\dockerphp\medlite
+    dir
+    docker ps
+    docker exec -it container_id bash 
+    (не работает в GitBash, работает в cmd)
+
 > Установка дебаг-бара
 
 Будет прописан в /vendor, composer.json
@@ -307,7 +385,7 @@ Debugbar включается/отключается в файле .env
 
     php artisan make:migration create_sqltext_table --create=sqltext
 
-Далее, заполненние этого файла вручную. И запуск миграции (отработают только новые файлы миграции).
+Далее, заполнение этого файла вручную. И запуск миграции (отработают только новые файлы миграции).
 
     php artisan migrate
 
