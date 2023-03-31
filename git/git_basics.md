@@ -82,8 +82,12 @@ https://askdev.ru/q/kak-dobavit-licenziyu-v-suschestvuyuschiy-proekt-na-github-1
 
 назначение новой почты  
 
-    git config --global user.email 'Name@sbs.com'	
+    git config --global user.email 'Name@sbs.com'
 
+Изменение глобальных настроек после коммита
+
+    git config --global --edit
+    git commit --amend --reset-author
 
 --------------------
 
@@ -395,7 +399,7 @@ git remote add origin https://sytnic@bitbucket.org/sytnic/widget-corp.git
 
     git remote remove origin
 
-удаляет связку удаленного и локального репозитория
+удаляет связку удаленного и локального репозитория, открепить удалённый репозиторий
 
 https://git-scm.com/book/ru/v2/Основы-Git-Работа-с-удалёнными-репозиториями
 

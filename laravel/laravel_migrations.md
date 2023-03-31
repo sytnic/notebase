@@ -1,16 +1,3 @@
-# Laravel solutions
-
-## Множественное число таблиц
-
-app\Models\Replacetext.php
-
-// Если в БД используется таблица не во множественном числе, то  
-// вот так прописывается единственное число для таблицы, к-рая есть в БД  
-
-    protected $table = 'replacetext';
-
----
-
 ## Создание файла миграции
 
     php artisan make:migration create_products_table --create=products
@@ -61,7 +48,7 @@ app\Models\Replacetext.php
     $table->unique(['room_type_id', 'is_weekend']); 
     // задано сочетание двух столбцов в этой таблице как уникальное
 
-### Занимаемые размеры    
+### Занимаемые размеры полями   
 
 Текст
 
@@ -78,9 +65,16 @@ app\Models\Replacetext.php
     $table->bigInteger('category_id')->unsigned(); 
     // unsigned = больше нуля
 
+
+    https://laravel.com/docs/8.x/migrations#column-method-float
+
     $table->float('zakup', 8, 2);  
     // точность плавающего числа
-    // Вероятно, создастся тип "double" в MySQL
+    // Вероятно, создастся тип "double" в MySQL.
+    // float по умолчанию создаёт double(8,2) в MySQL,
+    // т.е. числа больше 100000 не сохраняются, ограничиваются в SQL,
+    // иными словами 8 относится ко всему числу, включая два знака после запятой,
+    //  а не к числу только до запятой.
 
     $table->unsignedInteger('kolvo'); 
     // INT, unsigned, <= 4294967295
@@ -100,7 +94,38 @@ app\Models\Replacetext.php
     // bigint(20) unsigned Автоматическое приращение
     
 
----
+## Откат миграций
+
+Есть способ использовать откат нескольких последних миграций
+
+    // откатывает и накатывает миграцию
+    php artisan migrate:refresh --step=2
+    
+    // откатывает миграцию
+    php artisan migrate:rollback --step=1
+
+Это так же стирает содержимое созданных таблиц. Шаги --step=1 соответствуют цепочкам миграции (пачкам миграции) Batch в таблице ниже.  
+--step=1 захватит миграции Batch 2  
+--step=2 захватит миграции Batch 1
+
+Статус с миграциями (таблица в БД с ними аналогична): 
+
+    php artisan migrate:status
+
+```
++------+-------------------------------------------------------+-------+  
+| Ran? | Migration                                             | Batch |  
++------+-------------------------------------------------------+-------+  
+| Yes  | 2014_10_12_000000_create_users_table                  | 1     |  
+| Yes  | 2014_10_12_100000_create_password_resets_table        | 1     |  
+| Yes  | 2019_08_19_000000_create_failed_jobs_table            | 1     |  
+| Yes  | 2019_12_14_000001_create_personal_access_tokens_table | 1     |  
+| Yes  | 2023_03_22_080825_create_bbs_table                    | 2     |  
++------+-------------------------------------------------------+-------+  
+```
+
+
+
 
 
 

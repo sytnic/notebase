@@ -244,18 +244,17 @@ Dockerfile сохраняется без расширения как есть.
     ENTRYPOINT ["cowsay"] 
  
 
-3) Создать образ в том же каталоге (точка обязательна), где расположен Dockerfile
-
+3)   Создать образ в том же каталоге (точка обязательна), где расположен Dockerfile  
+    
     docker build -t docker_username/mycow . 
 
-
-4) Запустите контейнера на основе нашего образа
+4)   Запустите контейнера на основе нашего образа  
 
     docker run docker_username/mycow "hello" 
 
 ----
 
-## 2.3 Соединение контейнеров
+## 2.3 Соединение (connect) контейнеров
 
 https://hub.docker.com/_/mariadb
 
@@ -296,28 +295,29 @@ https://hub.docker.com/_/mariadb
     # Use root/example as user/password credentials
     version: '3.1'
 
-    services: # будущие контейнеры
+    services:            # будущие контейнеры
 
-    db:       # имя контейнера 
+    db:                  # имя контейнера 
         image: mariadb   # образ
-        restart: always  # перезапуск - всегда .
-                        # другие варианты:
-                        # no - никогда
-                        # on-failure - после падения
-        environment:  # аналог -e в cmd, для определения переменных
+        restart: always  # перезапуск always - всегда .
+                           # другие варианты:
+                         # no - никогда
+                         # on-failure - после падения
+        environment:     # аналог -e с docker run для определения переменных
+                         # например, docker run -e MYSQL_ROOT_PASSWORD=...
         MARIADB_ROOT_PASSWORD: 123456
 
-    adminer:  # имя контейнера
+    adminer:             # имя контейнера
         image: adminer   # образ
         restart: always
-        ports:  # порт локальный:внутри_контейнера
+        ports:           # порты - локальный:внутри_контейнера
         - 6080:8080
 
-В папке с файлом docker-compose.yml:
+В папке с файлом docker-compose.yml выполнить команду:
 
-    doocker-compose up
+    docker-compose up
 
-Команда продолжит выполняться (не будет предоставлено возможности вводить новую команду). После строчки
+Эта команда продолжит выполняться (не будет предоставлено возможности вводить новую команду). После строчки
 
      Version: '10.9.3-MariaDB-1:10.9.3+maria~ubu2204'  socket: '/run/mysqld/mysqld.sock'  port: 3306  mariadb.org binary distribution
 
@@ -334,6 +334,8 @@ https://hub.docker.com/_/mariadb
 
     docker-compose up --help
     docker-compose up -d
+    # или
+    docker-compose up --detach
 
 Посмотреть запущенные контейнеры:
 
@@ -347,22 +349,28 @@ https://hub.docker.com/_/mariadb
 
     version: '3.1'
 
-    services: # будущие контейнеры
+    services:           # будущие контейнеры
 
-    db:       # имя контейнера
-        build: ./db      # из какой папки использовать Dockerfile с образом
-        restart: always  # перезапуск - всегда .
-                        # другие варианты:
+    db:                 # имя контейнера
+        build: ./db     # из какой папки использовать Dockerfile с образом
+        restart: always # перезапуск always - всегда .
+                          # другие варианты:
                         # no - никогда
                         # on-failure - после падения
-        environment:  # аналог -e в cmd, для определения переменных
+        environment:    # аналог docker run -e для определения переменных
         MARIADB_ROOT_PASSWORD: 123456
 
-    adminer:  # имя контейнера
+    adminer:            # имя контейнера
         build: ./adminer
         restart: always
-        ports:  # порт локальный:внутри_контейнера
+        ports:          # порт локальный:внутри_контейнера
         - 6080:8080
+
+В контейнерах (services) должны использоваться 
+> либо build: для указания Dockerfile  
+> либо image: для указания образа
+
+В build: указывается папка, где лежит Dockerfile, а в Dockerfile указывается, какой образ использовать, например FROM php:7.4.32-apache
 
 Сначала строится проект:
 
@@ -405,34 +413,34 @@ https://hub.docker.com/_/mariadb
 
     version: '3.1'
 
-    services: # будущие контейнеры
+    services:            # будущие контейнеры
 
-    db:        # имя контейнера
+    db:                  # имя контейнера
         build: ./db      # из какой папки использовать Dockerfile с образом
         restart: always  # перезапуск - всегда
         environment:     # аналог -e в cmd, для определения переменных
         MARIADB_ROOT_PASSWORD: 123456
-        volumes:   # расшаривание
+        volumes:         # расшаривание
         - ./databases:/var/lib/mysql
 
-    adminer:   # имя контейнера
+    adminer:             # имя контейнера
         build: ./adminer
         restart: always
-        ports:  # порт локальный:внутри_контейнера
+        ports:           # порт локальный:внутри_контейнера
         - 6080:8080
 
 Остановить работающие контейнеры:
 
     [Ctrl+C]
 
-Удалить ранее созданный контейнер с базой данных (-f без подтверждения Y/n)
+Удалить ранее созданный контейнер с базой данных (т.е. под именем db) (-f без подтверждения Y/n)
 
     docker-compose rm db -f
 
 Пересобираем и запускаем
 
     docker-compose build
-    docker-compose up
+    docker-compose up -d
 
 Остановка контейнеров (при работающей команде)
 
