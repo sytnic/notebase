@@ -1,8 +1,15 @@
 # Вход в контейнер
 
     cd /d E:\
+    или
+    cd /d E:
+    
     cd E:\Projects_greycrud\template_docker
     dir
+
+Или сразу
+
+    cd /d E:\Projects\Projects_learning\laravel8
 
 Посмотреть работающие контейнеры
 
@@ -10,11 +17,16 @@
     
 Войти в контейнер # не работает в GitBash, работает в cmd
 
+Вход по id контейнера через docker
+
     docker exec -it container_id bash
 
     // установка nano, если необходимо
     # apt-get install nano 
     
+Вход по имени контейнера через docker-compose
+
+    docker-compose exec container_name bash
 
 ## При внесении изменений в docker-compose.yml
 

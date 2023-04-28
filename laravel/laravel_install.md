@@ -204,6 +204,10 @@ https://stackoverflow.com/questions/66188968/how-to-properly-start-laravel-8-wit
 скопировал в этот проект из другого папку "public/css/app.css" .  
 js-ы у меня не заработали.  
 
+Решение со стилями здесь ниже, вместе с Bootstrap:
+
+[laravel_install.md#Laravel, Docker, Bootstrap](./laravel_install.md#laravel-docker-bootstrap)
+
 ---
 > Позже, при создании таблиц для БД:
 
@@ -215,17 +219,22 @@ php artisan migrate
 
 
 ---
+## Laravel, Docker, Bootstrap
 > Docker:  
 Laravel 8  
 Bootstrap  
 
 https://github.com/laravel/ui  
+
 https://stackoverflow.com/questions/66188968/how-to-properly-start-laravel-8-with-bootstrap-authentication  
+
 https://stackoverflow.com/questions/65718391/laravel-npm-command-mix-not-found  
 
-Cтандартное предложение https://github.com/laravel/ui    
-    install npm && npm run dev   
- не сработало
+Cтандартное предложение https://github.com/laravel/ui  
+
+    install npm && npm run dev 
+
+ не сработало.
 
 Работает:
 
@@ -248,7 +257,7 @@ Cтандартное предложение https://github.com/laravel/ui
 
     php artisan migrate
     # сработало после остановки и перезапуска контейнеров
-    # также были предварительно высталвены права на все папки
+    # также были предварительно выставлены права на все папки
     # chown -R www-data:www-data *
     # неизвестно, повлияло ли это
 
