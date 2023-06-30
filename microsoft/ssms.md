@@ -3,6 +3,7 @@
 ## Настройка цветов
 
 Tools - Options - Fonts and Colors
+  or
 Tools - Options - Environment - Fonts and Colors (v19.01)
 
 - Text Editor  - Plain Text - Item background - Silver
