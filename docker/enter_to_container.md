@@ -22,7 +22,10 @@
     docker exec -it container_id bash
 
     // установка nano, если необходимо
-    # apt-get install nano 
+    apt-get install nano 
+
+    // установка Git, если необходимо
+    apt-get install git
     
 Вход по имени контейнера через docker-compose
 
@@ -44,4 +47,6 @@
     docker-compose up -d
 
 ---
+
+
 

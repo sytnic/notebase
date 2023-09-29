@@ -120,6 +120,7 @@ https://stackoverflow.com/questions/64597051/how-to-downgrade-or-install-a-speci
 ---
 
 > Docker:  
+
 Доработка .env файла в соответсвии с docker-compose.yml
 
     DB_HOST=db                # container service name (services:  db:)
@@ -131,11 +132,15 @@ https://stackoverflow.com/questions/64597051/how-to-downgrade-or-install-a-speci
 
 Отключение папок в .gitignore
 
-    /.vagrant
-    /storage          # это папка может требоваться при установке новых проектов
-    /bootstrap/cache  # это папка может требоваться при установке новых проектов
+    /.vagrant    
     /node_modules
     /dbfiles
+
+    # /storage
+    # /bootstrap/cache
+    # эти две папки не нужно отключать  
+    # 1 - это вызовет проблемы при клонировании  
+    # 2 - в них уже вложены .gitignore, заботящиеся о правильном отсеивании файлов при коммитах  
 
 Новый локальный репозиторий
 
