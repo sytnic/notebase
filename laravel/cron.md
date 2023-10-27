@@ -23,7 +23,7 @@
 
 `php artisan demo:cron` безоговорочно запускает разовое выполнение.
 
-Пример доработки app\Console\Commands\DemoCron.php
+> Пример доработки app\Console\Commands\DemoCron.php
 
 
 ```
@@ -45,7 +45,7 @@ class DemoCron extends Command
 }
 ```
 
-Пример доработки app\Console\Kernel.php
+> Пример доработки app\Console\Kernel.php
 ```
 class Kernel extends ConsoleKernel
 {    

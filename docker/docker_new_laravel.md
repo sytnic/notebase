@@ -11,6 +11,11 @@ https://www.youtube.com/watch?v=Ra1CetTcSeo
 
     git clone https://github.com/laravel/laravel.git laravelapp
 
+---
+> Docker
+
+Это описано в файле [docker_php_apache](./docker_php_apache.md)
+
 Создание файлов и папок в корне laravel
 
     cp .env.example .env
@@ -49,10 +54,18 @@ services:
         - ./:/var/www/html
 ```
 
+---
+
+
 Доработка .env файла в соответсвии с docker-compose.yml
 
     DB_HOST=db (container service name)
     DB_DATABASE=laratest_db   
+
+---
+> Docker
+
+Это описано в файле [docker_php_apache](./docker_php_apache.md)
 
 Dockerfile
 ```
@@ -97,9 +110,13 @@ vhost.conf
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+---
+
 ## Запуск Docker & Laravel
 
 Откорректировать env, если необходимо
+
+> Docker
 
 Запуск контейнеров
 

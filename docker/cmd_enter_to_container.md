@@ -1,5 +1,22 @@
 # Вход в контейнер
 
+## Кратко, только вход
+
+Посмотреть работающие контейнеры
+
+    docker ps
+
+Вход по id контейнера через docker  
+(не работает в GitBash, работает в cmd)
+
+    docker exec -it container_id bash
+
+    
+
+---
+
+## Подробно, с вариациями:
+
     cd /d E:\
     или
     cd /d E:
@@ -15,7 +32,6 @@
 
     docker ps
     
-Войти в контейнер # не работает в GitBash, работает в cmd
 
 Вход по id контейнера через docker
 
@@ -31,20 +47,9 @@
 
     docker-compose exec container_name bash
 
-## При внесении изменений в docker-compose.yml
+[Остановка контейнеров](./cmd_stop_container.md)
 
-Остановка контейнеров
 
-    docker-compose stop
-
-Удалить ранее созданный контейнер под именем container_name (это имя указано в секции services в docker-compose.yml) (-f означает без подтверждения Y/n).
-
-    docker-compose rm container_name -f
-
-Пересобираем и запускаем
-
-    docker-compose build
-    docker-compose up -d
 
 ---
 

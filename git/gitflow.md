@@ -2,7 +2,11 @@
 
 ## Picture:
 
-https://drive.google.com/file/d/1u3F4_ZbyMPhZ1Qy_tnhEXNK_1RNUnIMf/view?usp=sharing
+Gitflow m-merge ch-checkout_newbranch c-commit d-delete t-tag p-push
+
+<img src="./img/Gitflow.png" width="500px"/>
+
+[//]: https://drive.google.com/file/d/1u3F4_ZbyMPhZ1Qy_tnhEXNK_1RNUnIMf/view?usp=sharing
 
 ---
 ## Команды help

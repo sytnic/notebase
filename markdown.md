@@ -1,10 +1,15 @@
 # Markdown
 
-## Шпаргалки
+## Шпаргалки, ссылки
 
 https://skillbox.ru/media/code/yazyk-razmetki-markdown-shpargalka-po-sintaksisu-s-primerami/
 
 https://gist.github.com/Jekins/2bf2d0638163f1294637
+
+http://konvut.github.io/k50articles/
+
+https://dillinger.io/
+
 
 ## Изображения
 ```
@@ -23,6 +28,12 @@ https://gist.github.com/Jekins/2bf2d0638163f1294637
 
 <https://skillbox.ru/media/code/>
 
+Ссылка на файл. Иcпользование пробелов в именах файлов:
+
+[02-5. Операторы](./02-05%20Operators.md)  
+
+### Якоря
+
 Ссылки на якоря в файлах. Создаются на основе заголовков (#, ##).
 
 В той же папке в другом файле:  
@@ -31,7 +42,13 @@ https://gist.github.com/Jekins/2bf2d0638163f1294637
 В том же файле:  
 [laravel_install.md#Laravel, Docker, Bootstrap](./laravel_install.md#laravel-docker-bootstrap)
 
-Пробелы в имени файлах пока не победил (возможно, решение - %20 или как-то так).
+[Перейти к Заголовку 1](#title1)
+## <a id="title1">Заголовок 1</a>
+Какой-то контент
+
+[Some title 1](#some-title-1)
+## Some Title 1
+Some content
 
 ## Выпадающий список
 

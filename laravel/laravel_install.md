@@ -372,7 +372,9 @@ database\seeds\DatabaseSeeder@run - в какой последовательно
     docker exec -it container_id bash 
     (не работает в GitBash, работает в cmd)
 
+## DebugBar
 > Установка дебаг-бара
+
 
 Будет прописан в /vendor, composer.json
 
@@ -381,6 +383,8 @@ database\seeds\DatabaseSeeder@run - в какой последовательно
 При ошибке установки на Laravel 5.8 встала версия 3.0:
 
     composer require barryvdh/laravel-debugbar:~3.0 --dev
+
+
 
 Debugbar включается/отключается в файле .env
 
