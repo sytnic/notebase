@@ -119,7 +119,7 @@ RUN chown -R www-data:www-data /var/www/html \
     
 Запуск
 
-    docker-compose build
+    docker-compose build     # для первого раза
     docker-compose up -d
 
 > Если уже есть проект или хотя бы /public/index.php, то
@@ -128,3 +128,12 @@ RUN chown -R www-data:www-data /var/www/html \
 
     127.0.0.1:8080
 
+> Файл /public/index.php
+
+    <?php
+        phpinfo();
+    ?>
+
+Остановка
+
+    docker-compose stop

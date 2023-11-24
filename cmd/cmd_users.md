@@ -15,3 +15,6 @@
 
     whoami
 
+Поиск данных о процессе (PowerShell). Процесс можно найти в `Диспетчер задач - Подробности` и вставить его без `.exe`, на примере `MyProcess.exe`: 
+
+    Get-NetTCPConnection -OwningProcess $((Get-Process MyProcess).id)

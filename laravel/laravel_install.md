@@ -124,7 +124,9 @@ https://stackoverflow.com/questions/64597051/how-to-downgrade-or-install-a-speci
 Доработка .env файла в соответсвии с docker-compose.yml
 
     DB_HOST=db                # container service name (services:  db:)
-    DB_DATABASE=laratest_db   # (environment: MYSQL_DATABASE: 'vitrina_db')
+    DB_PORT=3308              # ports: - "3308:3306"
+    DB_DATABASE=laratest_db   # environment: MYSQL_DATABASE: 'laratest_db'
+    DB_PASSWORD=123           # MYSQL_ROOT_PASSWORD: "123"
 
 ----
 
