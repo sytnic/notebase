@@ -17,7 +17,7 @@ sudo service apache2 restart
 в etc/apache2/mods-enabled/
 должна быть ссылка на rerite.load
 
-созданиние ссылки:
+создание ссылки:
 ln -s /etc/apache2/mods-available/rewrite.load 
 
 --------------------

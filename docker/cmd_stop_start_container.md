@@ -5,7 +5,9 @@
 
 ## Новый запуск 
 
-    docker-compose up -d
+    docker-compose up -d 
+    //может не отработать без предварительного:
+    docker-compose build
 
 ---
 

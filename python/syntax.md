@@ -14,6 +14,16 @@ True	False	  False	   True	    False
 True	True	  False	   True	    True
 ```
 
+## Visual Studio Code
+
+Запуск файла во встроенном терминале возможен командами:
+
+    & python.exe "my4.py"
+    & python.exe my4.py
+    python.exe "my4.py"
+    python.exe my4.py
+    
+
 
 
 
