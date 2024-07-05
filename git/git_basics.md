@@ -248,11 +248,28 @@ https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%9E%D
     git commit --amend      
         Можно использовать для изменения сообщения в коммите.
 
-В случае с незначительным изменением в файлах, сначала добавляются файлы в отслеживаемый Индекс (add), потом --amend:
+В случае с незначительным изменением в файлах, сначала добавляются файлы в отслеживаемый Индекс (add), потом --amend. Выполнять строго в ветке master! Иначе возникает посторонний (behind) ненужный коммит, а нужный результат не достигается.        
 ```
 git add forgotten_file
 git commit --amend
 ```
+Ошибка (behind) выглядит так:
+
+```
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  e4baf64 017-Solution. Write a name formatter function
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> e4baf64
+
+Switched to branch 'master'
+
+```
+
 Нельзя использовать --amend, если коммит уже запушен. Это запретит пушить новые коммиты. Потребуется устроить pull из онлайна в локальную директорию, также будет автоматически смерджен пустой коммит. В итоге это приведёт к двум дополнительным коммитам, один из которых будет пустой.
 
 Изменение коммитов в git:
@@ -529,9 +546,9 @@ Merge удаляет файлы текущей ветки и добавляет 
 ---------------------
 ---------------------
 
-удаление ветки branch2, если из ветки master набрать  
+удаление ветки branch_name2, если из ветки master набрать  
 
-    git branch -d branch2		
+    git branch -d branch_name2		
 
 
 если ветка еще не существует на ремоут сервере, то запушить ее можно командой  
