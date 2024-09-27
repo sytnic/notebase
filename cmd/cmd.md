@@ -8,3 +8,8 @@
 Менять букву диска
     
     cmd  diskmgmt.msc
+
+Очистить экран Power Shell
+
+    ctrl+l
+
