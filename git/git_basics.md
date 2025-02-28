@@ -28,7 +28,24 @@
 
     // Не обязательно:
     // выкладка созданного тега
-    git push origin 0.1   
+    git push origin 0.1 
+
+### Если в продакшене понадобится получить ветку, которой раньше не было (например, develop)
+
+В продакшен-репозитории набрать
+
+    git fetch origin develop
+    git checkout develop
+
+Если ветка уже существовала в продакшене, то в продакшене, вероятно
+
+    git checkout develop
+
+    git fetch origin develop
+    git merge origin/develop
+        # или вместо этих двух одна команда:
+    git pull origin develop
+
 
 ### Добавление лицензии онлайн
 
