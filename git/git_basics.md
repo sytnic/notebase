@@ -85,6 +85,8 @@ https://askdev.ru/q/kak-dobavit-licenziyu-v-suschestvuyuschiy-proekt-na-github-1
     
     git --help			    	    	            
 
+**Настройки конфигураций**
+
 список всех конфигураций  
 
     git config --list			    	            
@@ -105,6 +107,43 @@ https://askdev.ru/q/kak-dobavit-licenziyu-v-suschestvuyuschiy-proekt-na-github-1
 
     git config --global --edit
     git commit --amend --reset-author
+
+
+
+**Создание локальной конфигурации для одного текущего репозитория**
+
+То же самое, но без флага --global
+
+    git config user.name 'Name'
+    git config user.email 'Name@sbs.com'
+
+**Если нужно отредактировать глобальную конфигурацию**
+
+    git config --global --edit
+
+Стереть ненужное.  
+Далее - выход из редактора Vim
+
+Сохранить
+
+    ESC
+    :w
+    Enter
+
+Выход
+
+    :q
+    Enter
+
+**Посмотреть список настроек**
+
+Проверить список глобальных настроек
+
+    git config --global --list
+
+Команда `git config --list` позволяет просмотреть все установленные настройки установки Git, включая локальные, глобальные и системные конфигурации. 
+
+Команда `git config --local --list` позволяет просмотреть локальные настройки конфигурации Git в текущем репозитории.
 
 --------------------
 
@@ -212,6 +251,14 @@ https://askdev.ru/q/kak-dobavit-licenziyu-v-suschestvuyuschiy-proekt-na-github-1
 
 -------
 
+> VIM
+
+Сохранить изменения и выйти:
+
+    Esc
+    :x
+    ENTER
+
 комбинация ctrl+c  
 выйти из режима ожидания команд и перейти к возможности набора новой команды
 
@@ -223,7 +270,10 @@ ESC :q
 
 иногда срабатывает ESC q q
 
-    git reset HEAD index.html       
+-----
+
+    git reset HEAD index.html  
+         
 удаляет указываемый файл из staging area в предыдущее состояние
 
 ------
