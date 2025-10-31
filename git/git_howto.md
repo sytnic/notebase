@@ -84,4 +84,19 @@ https://www.atlassian.com/ru/git/tutorials/undoing-changes/git-reset
     git add forgotten_file
     git commit --amend
 
+## Как найти скрытые ветки после git clone (по умолчанию видна только master)
+
+https://stackoverflow.com/questions/3999541/after-git-clone-from-github-i-do-not-see-my-branch  
+https://translated.turbopages.org/proxy_u/en-ru.ru.2f883252-68c26cf7-78fb5854-74722d776562/https/stackoverflow.com/questions/8889753/only-master-branch-is-visible-after-cloning-a-git-repo  
+
+    git branch -a
+    или
+    git branch --all
+
+Если вы выполните команду `git checkout new-branch`, git найдет удаленную ветку с таким же названием, автоматически создаст новую локальную ветку на основе того же коммита и переключится на новую локальную ветку.
+
+Для дальнейшей работы команда `git fetch` обновит **все** удалённые отслеживаемые ветки, добавив в них последнюю фиксацию из удалённого репозитория.
+
+@timmkrause: Несмотря на название, `удалённые отслеживаемые ветки` **физически** присутствуют в вашем клонированном репозитории. Они отражают ветку с таким же названием на сервере. Извлечение данных из удалённой отслеживаемой ветки будет работать даже при отключении.
+
 ## 
