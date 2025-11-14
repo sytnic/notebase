@@ -1,3 +1,16 @@
+## Как сделать форк репозитория, хранящегося локально
+
+    # Clone the existing project to a new location
+    git clone originalproject newproject
+
+И далее либо удалить ссылку на исходный удалённый репозиторий, либо создать новую привязку
+
+    # Remove the remote
+    git remote remove origin
+
+    # Update the remote to the new git repository URL
+    git remote set-url <remote> <url>
+
 ## Забыл добавить gitignore, как убрать файлы из проекта
 
 https://eric.blog/2014/05/11/remove-files-from-git-addingupdating-gitignore/
