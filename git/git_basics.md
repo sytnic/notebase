@@ -30,16 +30,20 @@
     // выкладка созданного тега
     git push origin 0.1 
 
-Пример с sourcecraft
+Пример с `sourcecraft`
 
-    git remote add origin ssh://ssh.sourcecraft.dev/dm-sytnic/devgid.git
+    git remote add origin https://git@git.sourcecraft.dev/dm-sytnic/myproject.git
     git branch -M main
     git push -u origin main
 
 Мой ход 
 
-    git remote add origin https://git@git.sourcecraft.dev/dm-sytnic/devgid.git
+    git remote add origin https://git@git.sourcecraft.dev/dm-sytnic/myproject.git
     git push origin master
+
+ Посмотреть, что получается
+
+    git remote show origin   
 
 
 ### Если в продакшене понадобится получить ветку, которой раньше не было (например, develop)
