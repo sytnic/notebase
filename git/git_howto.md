@@ -59,7 +59,9 @@ git commit -m "Drop files from .gitignore"
 Далее - новый коммит
 
     git add .
-    git commit -m "Removing ignored files in WindowsApp5"
+    git commit -m "Removing ignored files in repository"
+
+Если игнорируются отдельные файлы, то они будут стёрты из репозитория. Следует сохранять их отдельно, если они нужны.  
 
 ## Git Reset & Git Revert. Откат коммитов.
 
